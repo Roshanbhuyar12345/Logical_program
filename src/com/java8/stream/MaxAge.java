@@ -25,12 +25,18 @@ public class MaxAge {
 		list.add(e6);
 		list.add(e7);
 		Integer age = list.stream().max(Comparator.comparing(Employee::getAge)).get().getAge();
+		System.out.println("Using max function");
 		System.out.println(age);
 		// collect.forEach(System.out::println);
 
 		List<Employee> sorted = list.stream().sorted(Comparator.comparing(Employee::getAge).reversed())
 				.collect(Collectors.toList());
+		System.out.println("Using sorted");
 		System.out.println(sorted.get(0).getAge());
+
+		Integer employee = list.stream().reduce((a, b) -> b.getAge() > a.getAge() ? b : a).get().getAge();
+		System.out.println("Using reduce function");
+		System.out.println(employee);
 
 	}
 
